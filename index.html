@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Начальная страница</title>
+    <link rel="icon" href="player.png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .game-label {
+            font-size: 36px;
+            color: #4caf50;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .start-button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .start-button:hover {
+            background: linear-gradient(135deg, #388e3c, #2e7d32);
+            transform: translateY(-2px);
+        }
+
+        .start-button:active {
+            transform: translateY(0);
+        }
+
+        .player-image {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out 0.25s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                padding-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="player.png" alt="Player" class="player-image">
+        <div class="game-label">Игра с редактором кода</div>
+        <button class="start-button" onclick="startGame()">Начать игру</button>
+    </div>
+
+    <script>
+        function startGame() {
+            window.location.href = 'game.html';
+        }
+    </script>
+</body>
+</html>

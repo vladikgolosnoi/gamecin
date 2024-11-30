@@ -1,0 +1,445 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+    color: #333;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.light {
+    background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+    color: #333;
+}
+
+body.dark {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: #ecf0f1;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    margin: 20px;
+    transition: background 0.3s ease, border 0.3s ease;
+}
+
+.container.dark {
+    background-color: #34495e;
+    border-color: #2c3e50;
+}
+
+.welcome-container, .editor-container, .game-container {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease, border 0.3s ease;
+}
+
+.welcome-container {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border-bottom: 1px solid #ccc;
+    display: none; 
+}
+
+.welcome-container.dark, .editor-container.dark, .game-container.dark {
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+    border-color: #2c3e50;
+}
+
+.editor-container {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border-bottom: 1px solid #ccc;
+}
+
+.game-container {
+    background: linear-gradient(135deg, #dcedc8, #c5e1a5);
+}
+
+.section-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #4caf50;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.section-title.dark {
+    color: #3498db;
+}
+
+.section-title i {
+    margin-right: 10px;
+}
+
+#code-editor {
+    width: 100%;
+    height: 300px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #fff;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+#code-editor.dark {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    border-color: #34495e;
+}
+
+#run-button, #try-again-button, #instructions-button, #start-game-button, #theme-toggle-button {
+    display: block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #4caf50, #388e3c);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease, transform 0.2s ease, color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+}
+
+#run-button.dark, #try-again-button.dark, #instructions-button.dark, #start-game-button.dark, #theme-toggle-button.dark {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: #ecf0f1;
+}
+
+#run-button:hover, #try-again-button:hover, #instructions-button:hover, #start-game-button:hover, #theme-toggle-button:hover {
+    background: linear-gradient(135deg, #388e3c, #2e7d32);
+    transform: translateY(-2px);
+}
+
+#run-button.dark:hover, #try-again-button.dark:hover, #instructions-button.dark:hover, #start-game-button.dark:hover, #theme-toggle-button.dark:hover {
+    background: linear-gradient(135deg, #2980b9, #2471a3);
+}
+
+#run-button:active, #try-again-button:active, #instructions-button:active, #start-game-button:active, #theme-toggle-button:active {
+    transform: translateY(0);
+}
+
+#run-button i, #try-again-button i, #instructions-button i, #start-game-button i, #theme-toggle-button i {
+    margin-right: 10px;
+}
+
+#game-canvas {
+    width: 100%;
+    height: auto;
+    max-width: 300px; /* Уменьшен размер игрового поля */
+    max-height: 300px; /* Уменьшен размер игрового поля */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: background 0.3s ease, border 0.3s ease;
+}
+
+#game-canvas.dark {
+    background-color: #2c3e50;
+    border-color: #34495e;
+}
+
+#result-message {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.difficulty-selection {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.difficulty-selection.dark select {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    border-color: #34495e;
+}
+
+.difficulty-selection label {
+    margin-right: 10px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.difficulty-selection label.dark {
+    color: #ecf0f1;
+}
+
+.difficulty-selection label i {
+    margin-right: 5px;
+}
+
+.difficulty-selection select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.swal2-confirm {
+    background: linear-gradient(135deg, #4caf50, #388e3c) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    transition: background 0.3s ease, transform 0.2s ease !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.swal2-confirm.dark {
+    background: linear-gradient(135deg, #3498db, #2980b9) !important;
+    color: #ecf0f1 !important;
+}
+
+.swal2-confirm:hover {
+    background: linear-gradient(135deg, #388e3c, #2e7d32) !important;
+    transform: translateY(-2px) !important;
+}
+
+.swal2-confirm.dark:hover {
+    background: linear-gradient(135deg, #2980b9, #2471a3) !important;
+}
+
+.swal2-confirm:active {
+    transform: translateY(0) !important;
+}
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+
+    .editor-container {
+        border-right: 1px solid #ccc;
+        border-bottom: none;
+    }
+
+    .welcome-container {
+        display: flex; 
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        padding-top: 20px; 
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .welcome-container {
+        display: none; 
+    }
+
+    .editor-container {
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .game-container {
+        padding: 10px;
+    }
+
+    #code-editor {
+        height: 200px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .theme-toggle {
+        margin-top: 20px;
+    }
+
+    .game-container {
+        order: 1;
+    }
+
+    .editor-container {
+        order: 2;
+    }
+
+    .difficulty-selection {
+        margin-top: 10px;
+    }
+
+    #run-button, #try-again-button, #instructions-button, #start-game-button, #theme-toggle-button {
+        margin-top: 10px;
+    }
+}
+
+.player-image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle.visible {
+    transform: translateX(0);
+}
+
+.theme-toggle button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #4caf50;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle button.dark {
+    color: #3498db;
+}
+
+.theme-toggle button i.fa-sun {
+    display: block;
+}
+
+.theme-toggle button i.fa-moon {
+    display: none;
+}
+
+.theme-toggle button.dark i.fa-sun {
+    display: none;
+}
+
+.theme-toggle button.dark i.fa-moon {
+    display: block;
+}
+
+@media (max-width: 767px) {
+    .theme-toggle {
+        transform: translateX(100%);
+    }
+
+    .theme-toggle.visible {
+        transform: translateX(0);
+    }
+}
+
+.swal2-popup-custom {
+    width: 90% !important;
+    max-width: 500px !important;
+    margin: 0 auto !important;
+    position: absolute !important;
+    top: 20% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    padding: 20px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) !important;
+    background: #fff !important;
+    color: #333 !important;
+}
+
+.swal2-popup-custom.dark {
+    background: #34495e !important;
+    color: #ecf0f1 !important;
+}
+
+.swal2-title-custom {
+    font-size: 24px !important;
+    color: #4caf50 !important;
+    margin-bottom: 20px !important;
+}
+
+.swal2-title-custom.dark {
+    color: #3498db !important;
+}
+
+.swal2-content-custom {
+    font-size: 18px !important;
+    color: #333 !important;
+    margin-bottom: 20px !important;
+}
+
+.swal2-content-custom.dark {
+    color: #ecf0f1 !important;
+}
+
+.swal2-confirm-custom {
+    background: linear-gradient(135deg, #4caf50, #388e3c) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    transition: background 0.3s ease, transform 0.2s ease !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.swal2-confirm-custom.dark {
+    background: linear-gradient(135deg, #3498db, #2980b9) !important;
+    color: #ecf0f1 !important;
+}
+
+.swal2-confirm-custom:hover {
+    background: linear-gradient(135deg, #388e3c, #2e7d32) !important;
+    transform: translateY(-2px) !important;
+}
+
+.swal2-confirm-custom.dark:hover {
+    background: linear-gradient(135deg, #2980b9, #2471a3) !important;
+}
+
+.swal2-confirm-custom:active {
+    transform: translateY(0) !important;
+}
+
+@media (max-width: 767px) {
+    .swal2-popup-custom {
+        width: 90% !important;
+        max-width: 300px !important;
+        top: 10% !important;
+    }
+
+    .swal2-title-custom {
+        font-size: 20px !important;
+    }
+
+    .swal2-content-custom {
+        font-size: 16px !important;
+    }
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра с редактором кода</title>
+    <link rel="icon" href="player.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="theme-toggle">
+            <button id="theme-toggle-button"><i class="fas fa-sun"></i></button>
+        </div>
+        <div class="welcome-container">
+            <img src="player.png" alt="Player" class="player-image">
+            <h2 class="section-title"><i class="fas fa-gamepad"></i> Добро пожаловать в игру!</h2>
+            <p>Помоги змейке добраться до сокровищ, спрятанных в лабиринте! Напиши код, чтобы провести её через препятствия и достичь цели.</p>
+            <button id="start-game-button" class="start-button"><i class="fas fa-play"></i> Начать игру</button>
+        </div>
+        <div class="editor-container">
+            <h2 class="section-title"><i class="fas fa-code"></i> Редактор кода</h2>
+            <textarea id="code-editor" placeholder="Напишите ваш код здесь..."></textarea>
+            <button id="run-button"><i class="fas fa-play"></i> Запустить</button>
+            <div id="result-message"></div>
+            <button id="try-again-button" style="display: none;"><i class="fas fa-redo"></i> Попробовать снова</button>
+            <button id="instructions-button"><i class="fas fa-question-circle"></i> Инструкция</button>
+            <div class="difficulty-selection">
+                <label for="difficulty"><i class="fas fa-user"></i> Выберите уровень сложности:</label>
+                <select id="difficulty">
+                    <option value="easy">Легкий</option>
+                    <option value="medium">Средний</option>
+                    <option value="hard">Сложный</option>
+                </select>
+            </div>
+        </div>
+        <div class="game-container">
+            <h2 class="section-title"><i class="fas fa-gamepad"></i> Игровое поле</h2>
+            <canvas id="game-canvas"></canvas>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('instructions-button').addEventListener('click', function() {
+            const isDarkTheme = document.body.classList.contains('dark');
+            Swal.fire({
+                title: 'Инструкция по игре',
+                html: `
+                    <p>Это игра с редактором кода, где вам нужно написать код для перемещения персонажа по игровому полю. Ваша цель — достичь финиша, избегая препятствий.</p>
+                    <p>Используйте следующие функции для перемещения:</p>
+                    <ul>
+                        <li><code>moveIntoLeft(steps)</code> - Движение влево на указанное количество шагов.</li>
+                        <li><code>moveIntoRight(steps)</code> - Движение вправо на указанное количество шагов.</li>
+                        <li><code>moveIntoUp(steps)</code> - Движение вверх на указанное количество шагов.</li>
+                        <li><code>moveIntoDown(steps)</code> - Движение вниз на указанное количество шагов.</li>
+                    </ul>
+                    <p>Пример кода:</p>
+                    <pre>
+await moveIntoRight(3);
+await moveIntoDown(2);
+await moveIntoLeft(1);
+await moveIntoUp(1);
+                    </pre>
+                `,
+                icon: 'info',
+                confirmButtonText: 'Понятно!',
+                customClass: {
+                    popup: 'swal2-popup-custom',
+                    title: 'swal2-title-custom',
+                    content: 'swal2-content-custom',
+                    confirmButton: 'swal2-confirm-custom'
+                },
+                showClass: {
+                    popup: 'swal2-show',
+                    backdrop: 'swal2-backdrop-show'
+                },
+                hideClass: {
+                    popup: 'swal2-hide',
+                    backdrop: 'swal2-backdrop-hide'
+                },
+                position: 'top',
+                backdrop: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+                keydownListenerCapture: false
+            });
+        });
+    </script>
+</body>
+</html>
